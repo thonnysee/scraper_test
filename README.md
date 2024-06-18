@@ -93,7 +93,21 @@ php artisan test
 ## Viewing Scraped Data
 Register an user with name, email and password. 
 
+![image](https://github.com/thonnysee/scraper_test/assets/44601648/73a69776-d07a-418f-8f9e-4afb9d66871b)
+
 After that just log in your account and you can start scraping sites using the input box.
+
+![image](https://github.com/thonnysee/scraper_test/assets/44601648/03963ce3-0fb9-494b-a0e5-bbc7d8f907b6)
+
+User Dashboard to check all added sites scraped.
+
+![image](https://github.com/thonnysee/scraper_test/assets/44601648/cf8ab0bd-17f2-41d4-8bf4-11eb5317bf67)
+
+Links View
+
+![image](https://github.com/thonnysee/scraper_test/assets/44601648/1f5a5673-9fb7-4fe9-8ca8-397ac6d33ad1)
+
+
 
 <em>NOTE: The scraper uses the tag "a" for getting all the links so in some cases it will bring only the route not the whole link so be careful when clicking the links. Also be aware it gets all the tags so it could bring some weird stuff </em>
 
