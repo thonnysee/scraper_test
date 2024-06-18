@@ -1,0 +1,27 @@
+# For more information: https://laravel.com/docs/sail
+version: '3'
+services:
+    mysql:
+        image: 'mysql:latest'
+        ports:
+            - '3310:3306'
+        environment:
+            MYSQL_ROOT_PASSWORD: 'koombea'
+            MYSQL_DATABASE: 'koombea'
+            MYSQL_USER: 'koombea'
+            MYSQL_PASSWORD: 'koombea'
+            
+        volumes:
+            - 'sailmysql:/var/lib/mysql'
+        networks:
+            - sail
+        healthcheck:
+          test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
+networks:
+    sail:
+        driver: bridge
+volumes:
+    sailmysql:
+        driver: local
+    sailredis:
+        driver: local
