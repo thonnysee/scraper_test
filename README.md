@@ -81,8 +81,9 @@ MYSQL_USER: 'koombea'
 MYSQL_PASSWORD: 'koombea'
 PORT: '3310'
 ```
+<em><strong> Used port 3310 to avoid conflict with other MySQL instances on the same port</strong> </em>
+
 ## Testing
-Running the Web Scraper
 To test the whole application, execute the following command:
 
 ```bash
@@ -92,9 +93,9 @@ php artisan test
 ## Viewing Scraped Data
 Register an user with name, email and password. 
 
-After that just log in your account and you can start scraping sites using the iput box.
+After that just log in your account and you can start scraping sites using the input box.
 
-<em>NOTE: The scraper uses the tag "a" for getting al l the links so in some cases it will bring only the route not the whole link so be careful when clicking the links. Also be aware it gets all the tags so it could bring some weird stuff </em>
+<em>NOTE: The scraper uses the tag "a" for getting all the links so in some cases it will bring only the route not the whole link so be careful when clicking the links. Also be aware it gets all the tags so it could bring some weird stuff </em>
 
 ## Author
 
