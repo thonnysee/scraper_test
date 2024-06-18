@@ -35,6 +35,7 @@ class ScrapeLinksJob implements ShouldQueue
 
     public function handle()
     {
+        // Run the startSpider with the customSpider function and adding the values for the pipelines
         Roach::startSpider(
             CustomSpider::class, 
             new Overrides(
@@ -58,6 +59,7 @@ class CustomSpider extends BasicSpider implements SpiderInterface
 
     public function configure(): void
     {
+        // Set default middleware configuration for the spider
         $this->setDownloaderMiddleware([MiddlewareUserAgentMiddleware::class => [
             'userAgent' => 'Mozilla/5.0 (compatible; Roach/1.0)',
         ]]);
@@ -65,8 +67,10 @@ class CustomSpider extends BasicSpider implements SpiderInterface
 
     public function parse($response): \Generator
     {
+        //Handle all the reponse elements of the file
         $siteName = $response->filter('title')->text();
-        // Crear o encontrar el Site
+        
+        // Create the site with the name of the website to be scraped
         $site = Site::firstOrCreate(
             [
                 'url' => $this->context['url'],
@@ -74,6 +78,8 @@ class CustomSpider extends BasicSpider implements SpiderInterface
                 'owner_id' => (integer)$this->context['owner_id']
             ]
         );
+
+        // For each element with the tag 'a' snet through the pipelineto add the link to the database
         foreach ($response->filter('a') as $node) {
             yield $this->item([
                 'url' => $node->getAttribute('href'),
@@ -81,6 +87,7 @@ class CustomSpider extends BasicSpider implements SpiderInterface
                 'site_id' => $site->id,
             ]);
         }
+        // As completed change the status of the site scraped.
         $site->status = 'Completed';
         $site->save();
     }
@@ -95,6 +102,7 @@ class SaveLinksProcessor implements ItemProcessorInterface
     
     public function processItem(ItemInterface $item): ItemInterface
     {
+        // Pipeline process to save the links on database
         Link::create([
             'url' => $item->get('url'),
             'name' => $item->get('name'),

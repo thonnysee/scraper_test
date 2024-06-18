@@ -25,7 +25,11 @@ class SitesController extends Controller
     {
         $owner_id = auth()->user()->id;
         $url = $request['url'];
+
+        // Dispatch the job with the requested url and the authenticated user
         ScrapeLinksJob::dispatch($url, $owner_id);
+
+        // Obtain all the sites
         $sites = auth()->user()->sites()->paginate(10);
         return view("dashboard",['sites' => $sites]);
     }
