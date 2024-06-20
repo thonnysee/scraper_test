@@ -59,6 +59,10 @@ php artisan migrate
 ```bash
 php artisan serve
 ```
+### 7. Run Queue for job execution
+```bash
+php artisan queue:work
+```
 
 The application will be available at http://localhost:8000.
 
